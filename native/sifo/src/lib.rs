@@ -1,8 +1,9 @@
-use rayon::prelude::*;
-use rustler::{NifStruct, ResourceArc};
+use rustler::ResourceArc;
 use std::sync::RwLock;
-use sysinfo::{CpuExt, System, SystemExt};
+use sysinfo::{System, SystemExt};
 
+mod ex_component;
+mod ex_cpu;
 pub struct SystemResource(RwLock<System>);
 
 #[rustler::nif]
@@ -59,40 +60,6 @@ refresh_fn!(refresh_users_list, "Refreshes users list.");
 refresh_fn!(refresh_networks, "Refreshes networks data.");
 refresh_fn!(refresh_networks_list, "he network list will be updated: removing not existing anymore interfaces and adding new ones.");
 
-#[derive(Debug, NifStruct)]
-#[module = "Cpu"]
-pub struct ElCpu {
-    pub cpu_usage: f32,
-    pub name: String,
-    pub vendor_id: String,
-    pub brand: String,
-    pub frequency: u64,
-}
-
-impl From<&sysinfo::Cpu> for ElCpu {
-    fn from(cpu: &sysinfo::Cpu) -> Self {
-        Self {
-            cpu_usage: cpu.cpu_usage(),
-            name: cpu.name().to_string(),
-            vendor_id: cpu.vendor_id().to_string(),
-            brand: cpu.brand().to_string(),
-            frequency: cpu.frequency(),
-        }
-    }
-}
-
-#[rustler::nif]
-fn cpus(resource: ResourceArc<SystemResource>) -> Vec<ElCpu> {
-    resource
-        .0
-        .read()
-        .unwrap()
-        .cpus()
-        .par_iter()
-        .map(Into::into)
-        .collect::<Vec<ElCpu>>()
-}
-
 scalar_fn!(
     physical_core_count,
     Option<usize>,
@@ -127,7 +94,7 @@ rustler::init!(
         refresh_users_list,
         refresh_networks,
         refresh_networks_list,
-        cpus,
+        ex_cpu::cpus,
         physical_core_count,
         total_memory,
         free_memory,
@@ -136,6 +103,7 @@ rustler::init!(
         total_swap,
         free_swap,
         used_swap,
+        ex_component::components
     ],
     load = load
 );

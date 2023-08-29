@@ -14,8 +14,8 @@ def deps do
   ]
 end
 ```
-## Examples
 
+## Examples
 
 ```elixir
 > Sifo.sys |> Sifo.refresh_all |> Sifo.physical_core_count
@@ -93,10 +93,6 @@ Sifo.sys |> Sifo.refresh_all |> Sifo.cpus
 ]
 ```
 
-
-
-
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at <https://hexdocs.pm/sifo>.
-

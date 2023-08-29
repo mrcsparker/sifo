@@ -33,6 +33,8 @@ defmodule Sifo do
   def free_swap(_), do: :erlang.nif_error(:nif_not_loaded)
   def used_swap(_), do: :erlang.nif_error(:nif_not_loaded)
 
+  def components(_), do: :erlang.nif_error(:nif_not_loaded)
+
   @doc """
   Hello world.
 
