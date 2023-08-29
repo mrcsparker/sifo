@@ -64,13 +64,17 @@ scalar_fn!(
     "Returns the number of physical cores on the CPU or `None` if it couldn't get it."
 );
 
+scalar_fn!(total_memory, u64, "Returns the RAM size in bytes.");
+scalar_fn!(free_memory, u64, "Returns the amount of free RAM in bytes.");
 scalar_fn!(
     available_memory,
     u64,
-    "Returns the available memory in bytes."
+    "Returns the amount of available RAM in bytes."
 );
-
-scalar_fn!(total_memory, u64, "Returns the total memory in bytes.");
+scalar_fn!(used_memory, u64, "Returns the amount of used RAM in bytes.");
+scalar_fn!(total_swap, u64, "Returns the SWAP size in bytes.");
+scalar_fn!(free_swap, u64, "Returns the amount of free SWAP in bytes.");
+scalar_fn!(used_swap, u64, "Returns the amount of used SWAP in bytes.");
 
 rustler::init!(
     "Elixir.Sifo",
@@ -89,8 +93,13 @@ rustler::init!(
         refresh_networks,
         refresh_networks_list,
         physical_core_count,
+        total_memory,
+        free_memory,
         available_memory,
-        total_memory
+        used_memory,
+        total_swap,
+        free_swap,
+        used_swap
     ],
     load = load
 );

@@ -23,8 +23,14 @@ defmodule Sifo do
   def refresh_networks_list(_), do: :erlang.nif_error(:nif_not_loaded)
 
   def physical_core_count(_), do: :erlang.nif_error(:nif_not_loaded)
-  def available_memory(_), do: :erlang.nif_error(:nif_not_loaded)
+
   def total_memory(_), do: :erlang.nif_error(:nif_not_loaded)
+  def free_memory(_), do: :erlang.nif_error(:nif_not_loaded)
+  def available_memory(_), do: :erlang.nif_error(:nif_not_loaded)
+  def used_memory(_), do: :erlang.nif_error(:nif_not_loaded)
+  def total_swap(_), do: :erlang.nif_error(:nif_not_loaded)
+  def free_swap(_), do: :erlang.nif_error(:nif_not_loaded)
+  def used_swap(_), do: :erlang.nif_error(:nif_not_loaded)
 
   @doc """
   Hello world.
