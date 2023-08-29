@@ -22,6 +22,7 @@ defmodule Sifo do
   def refresh_networks(_), do: :erlang.nif_error(:nif_not_loaded)
   def refresh_networks_list(_), do: :erlang.nif_error(:nif_not_loaded)
 
+  def cpus(_), do: :erlang.nif_error(:nif_not_loaded)
   def physical_core_count(_), do: :erlang.nif_error(:nif_not_loaded)
 
   def total_memory(_), do: :erlang.nif_error(:nif_not_loaded)
