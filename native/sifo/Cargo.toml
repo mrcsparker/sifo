@@ -1,0 +1,15 @@
+[package]
+name = "sifo"
+version = "0.1.0"
+authors = []
+edition = "2021"
+
+[lib]
+name = "sifo"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+rayon = "1.7.0"
+rustler = "0.29.1"
+sysinfo = "0.29.9"
