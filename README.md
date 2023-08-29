@@ -1,6 +1,6 @@
 # Sifo
 
-**TODO: Add description**
+Elixir wrapper for the Rust Sysinfo library
 
 ## Installation
 
@@ -13,6 +13,10 @@ def deps do
     {:sifo, "~> 0.1.0"}
   ]
 end
+```
+
+```
+Sifo.sys |> Sifo.refresh_all |> Sifo.physical_core_count
 ```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
